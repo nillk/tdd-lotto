@@ -7,7 +7,7 @@ public class Lotto {
 
     private static final int LOTTO_COUNT = 6;
 
-    List<LottoNumber> numbers;
+    private List<LottoNumber> numbers;
 
     Lotto(List<LottoNumber> numbers) {
         checkSize(numbers);
@@ -48,5 +48,10 @@ public class Lotto {
         if (numbers.size() != LOTTO_COUNT) {
             throw new RuntimeException("로또는 6개의 숫자로 이루어져야 합니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

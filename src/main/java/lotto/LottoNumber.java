@@ -7,7 +7,7 @@ public class LottoNumber {
 
     private static final int NUM_BOUND = 45;
 
-    int number;
+    private int number;
 
     LottoNumber(int number) {
         if (number < 1) {
@@ -37,5 +37,10 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(number);
     }
 }
