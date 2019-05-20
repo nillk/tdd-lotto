@@ -39,4 +39,14 @@ public class LottoTest {
                 new LottoNumber(4),
                 new LottoNumber(5)))).hasMessage("로또는 6개의 숫자로 이루어져야 합니다.");
     }
+
+    @Test
+    public void 로또의_6개의_숫자는_중복될_수_없다() {
+        assertThatThrownBy(() -> new Lotto(Arrays.asList(new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(5)))).hasMessage("중복된 숫자가 있습니다.");
+    }
 }

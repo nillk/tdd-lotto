@@ -11,6 +11,7 @@ public class Lotto {
 
     Lotto(List<LottoNumber> numbers) {
         checkSize(numbers);
+        checkDuplication(numbers);
 
         this.numbers = numbers;
     }
@@ -19,10 +20,28 @@ public class Lotto {
         List<LottoNumber> numbers = new ArrayList<>(LOTTO_COUNT);
 
         for (int i = 0; i < LOTTO_COUNT; i++) {
-            numbers.add(LottoNumber.generate());
+            LottoNumber num = getUniqueLottoNumber(numbers);
+
+            numbers.add(num);
         }
 
         return new Lotto(numbers);
+    }
+
+    private static LottoNumber getUniqueLottoNumber(List<LottoNumber> numbers) {
+        LottoNumber num = LottoNumber.generate();
+
+        while (numbers.contains(num)) {
+            num = LottoNumber.generate();
+        }
+
+        return num;
+    }
+
+    private void checkDuplication(List<LottoNumber> numbers) {
+        if (numbers.stream().distinct().count() != LOTTO_COUNT) {
+            throw new RuntimeException("중복된 숫자가 있습니다.");
+        }
     }
 
     private void checkSize(List<LottoNumber> numbers) {
