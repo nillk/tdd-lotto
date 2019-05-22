@@ -65,4 +65,10 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,46"))
                 .hasMessage("숫자는 45보다 작거나 같아야 합니다.");
     }
+
+    @Test
+    public void 당첨_번호의_각_숫자는_중복될_수_없다() {
+        assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,1"))
+                .hasMessage("중복된 숫자가 있습니다.");
+    }
 }
