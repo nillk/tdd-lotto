@@ -1,4 +1,6 @@
 import lotto.LottoList;
+import winning.WinningNumber;
+import winning.WinningStatistics;
 
 public class LottoMachine {
 
@@ -18,6 +20,10 @@ public class LottoMachine {
 
     private void generateLottos(int size) {
         this.lottoList = new LottoList(size);
+    }
+
+    public WinningStatistics check(WinningNumber winningNumber) {
+        return this.lottoList.check(winningNumber);
     }
 
     public String lottoString(int index) {

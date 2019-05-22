@@ -1,5 +1,6 @@
 
 import winning.WinningNumber;
+import winning.WinningStatistics;
 
 import java.util.Scanner;
 
@@ -24,5 +25,9 @@ public class LottoGame {
         String bonusNumber = scan.next();
 
         WinningNumber lastWeekWinningNumber = new WinningNumber(winningNumber, bonusNumber);
+
+        WinningStatistics winningStatistics = lottoMachine.check(lastWeekWinningNumber);
+
+        System.out.println(winningStatistics);
     }
 }

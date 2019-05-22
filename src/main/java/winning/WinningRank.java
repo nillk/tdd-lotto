@@ -1,12 +1,25 @@
 package winning;
 
 public enum WinningRank {
-    FIRST,
-    SECOND,
-    THIRD,
-    FOURTH,
-    FIFTH,
-    NONE;
+    FIRST(6, 2000000000),
+    SECOND(5, 30000000) {
+        @Override
+        public String toString() {
+            return this.criteria + "개 일치, 보너스 볼 일치(" + this.prizeMoney + "원)";
+        }
+    },
+    THIRD(5, 1500000),
+    FOURTH(4, 50000),
+    FIFTH(3, 5000),
+    NONE(2, 0);
+
+    int criteria;
+    int prizeMoney;
+
+    WinningRank(int criteria, int prizeMoney) {
+        this.criteria = criteria;
+        this.prizeMoney = prizeMoney;
+    }
 
     public static WinningRank of(int diffSize, boolean hasBonusNumber) {
         if (diffSize == 0) {
@@ -26,5 +39,10 @@ public enum WinningRank {
         }
 
         return NONE;
+    }
+
+    @Override
+    public String toString() {
+        return this.criteria + "개 일치 (" + this.prizeMoney + "원)";
     }
 }

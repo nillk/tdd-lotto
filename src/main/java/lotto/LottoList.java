@@ -1,5 +1,8 @@
 package lotto;
 
+import winning.WinningNumber;
+import winning.WinningStatistics;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +21,12 @@ public class LottoList {
 
     public int size() {
         return lottoList.size();
+    }
+
+    public WinningStatistics check(WinningNumber winning) {
+        return new WinningStatistics(lottoList.stream()
+                .map(winning::check)
+                .collect(Collectors.toList()));
     }
 
     public String lottoString(int index) {
