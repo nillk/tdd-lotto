@@ -1,7 +1,10 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -9,7 +12,11 @@ public class Lotto {
 
     private List<LottoNumber> numbers;
 
-    Lotto(List<LottoNumber> numbers) {
+    public Lotto(int... numbers) {
+        this(Arrays.stream(numbers).mapToObj(LottoNumber::new).collect(Collectors.toList()));
+    }
+
+    public Lotto(List<LottoNumber> numbers) {
         checkSize(numbers);
         checkDuplication(numbers);
 
@@ -48,6 +55,19 @@ public class Lotto {
         if (numbers.size() != LOTTO_COUNT) {
             throw new RuntimeException("로또는 6개의 숫자로 이루어져야 합니다.");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 
     @Override

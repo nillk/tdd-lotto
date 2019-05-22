@@ -1,3 +1,5 @@
+import lotto.Lotto;
+import lotto.LottoNumber;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,5 +49,12 @@ public class LottoGameTest {
         assertThat(lottoGame.lottoStringByIndex(0)).
                 isNotBlank().
                 asString().containsPattern("\\[([0-9]+, ){5}([0-9]+{1})\\]"); // [1, 2, 3, 4, 5, 6] 형태
+    }
+
+    @Test
+    public void 지난주_당첨_번호를_입력할_수_있다() {
+        lottoGame.setWinningNumber("1,2,3,4,5,6");
+
+        assertThat(lottoGame.checkWinning(new Lotto(1, 2, 3, 4, 5, 6))).isTrue();
     }
 }

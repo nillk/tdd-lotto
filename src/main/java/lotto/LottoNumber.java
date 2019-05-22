@@ -9,7 +9,7 @@ public class LottoNumber {
 
     private int number;
 
-    LottoNumber(int number) {
+    public LottoNumber(int number) {
         if (number < 1) {
             throw new RuntimeException("숫자는 1보다 크거나 같아야 합니다.");
         }
