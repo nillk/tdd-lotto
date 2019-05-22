@@ -39,7 +39,7 @@ public class WinningNumberTest {
     @Test
     public void 보너스_번호는_하나의_숫자를_입력해야_한다() {
         try {
-            new WinningNumber("1,2,3,4,5,6", "1");
+            new WinningNumber("1,2,3,4,5,6", "7");
         } catch (Exception e) {
             fail("에러가 발생하지 않아야 함");
         }
@@ -55,5 +55,11 @@ public class WinningNumberTest {
 
         assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "46"))
                 .hasMessage("숫자는 45보다 작거나 같아야 합니다.");
+    }
+
+    @Test
+    public void 보너스_번호가_당첨번호에_있는_숫자면_에러_발생() {
+        assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "6"))
+                .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 }
