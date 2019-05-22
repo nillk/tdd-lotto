@@ -56,4 +56,13 @@ public class LottoMachineTest {
         assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,6,7"))
                 .hasMessage("로또는 6개의 숫자로 이루어져야 합니다.");
     }
+
+    @Test
+    public void 당첨_번호가_각각_1에서_45_사이의_숫자가_아니면_에러_발생() {
+        assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,0"))
+                .hasMessage("숫자는 1보다 크거나 같아야 합니다.");
+
+        assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,46"))
+                .hasMessage("숫자는 45보다 작거나 같아야 합니다.");
+    }
 }
