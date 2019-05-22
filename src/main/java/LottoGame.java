@@ -1,43 +1,23 @@
-import lotto.Lotto;
-import lotto.LottoList;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class LottoGame {
 
-    private static final int PRICE_BASE = 1000;
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        LottoMachine lottoMachine = new LottoMachine();
 
-    private LottoList lottoList;
-    private Lotto winningLotto;
+        System.out.println("구입금액을 입력해 주세요.");
+        int price = scan.nextInt();
 
-    public void buy(int price) {
-        if (price < PRICE_BASE) {
-            throw new RuntimeException("구매 금액은 1000원 이상이어야 합니다.");
-        }
+        int lottoCount = lottoMachine.buy(price);
 
-        generateLottos(price / PRICE_BASE);
-    }
+        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoMachine.allLottoString());
 
-    private void generateLottos(int size) {
-        this.lottoList = new LottoList(size);
-    }
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        String winningNumber = scan.next();
 
-    public int lottoSize() {
-        return lottoList.size();
-    }
-
-    public String lottoStringByIndex(int index) {
-        return lottoList.lottoString(index);
-    }
-
-    public void setWinningNumber(String winningNumberString) {
-        int[] winnings = Arrays.stream(winningNumberString.split("[ ]*,[ ]*"))
-                .mapToInt(Integer::parseInt).toArray();
-
-        this.winningLotto = new Lotto(winnings);
-    }
-
-    public boolean checkWinning(Lotto lotto) {
-        return this.winningLotto.equals(lotto);
+        lottoMachine.setWinningNumber(winningNumber);
     }
 }

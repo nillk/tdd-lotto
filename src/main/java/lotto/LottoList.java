@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoList {
 
@@ -21,5 +22,11 @@ public class LottoList {
 
     public String lottoString(int index) {
         return lottoList.get(index).toString();
+    }
+
+    public String allLottoString() {
+        return lottoList.stream().
+                map(Lotto::toString).
+                collect(Collectors.joining(System.lineSeparator()));
     }
 }
