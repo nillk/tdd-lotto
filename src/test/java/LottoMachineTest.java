@@ -47,4 +47,13 @@ public class LottoMachineTest {
 
         assertThat(lottoMachine.checkWinning(new Lotto(1, 2, 3, 4, 5, 6))).isTrue();
     }
+
+    @Test
+    public void 당첨_번호로_6자리_숫자를_입력하지_않으면_에러가_발생한다() {
+        assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3"))
+                .hasMessage("로또는 6개의 숫자로 이루어져야 합니다.");
+
+        assertThatThrownBy(() -> lottoMachine.setWinningNumber("1,2,3,4,5,6,7"))
+                .hasMessage("로또는 6개의 숫자로 이루어져야 합니다.");
+    }
 }
