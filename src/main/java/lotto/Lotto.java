@@ -17,8 +17,8 @@ public class Lotto {
     }
 
     public Lotto(List<LottoNumber> numbers) {
-        checkSize(numbers);
-        checkDuplication(numbers);
+        validateSize(numbers);
+        validateDuplication(numbers);
 
         this.numbers = numbers;
     }
@@ -45,20 +45,26 @@ public class Lotto {
         return num;
     }
 
-    private void checkDuplication(List<LottoNumber> numbers) {
+    private void validateDuplication(List<LottoNumber> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_COUNT) {
             throw new RuntimeException("중복된 숫자가 있습니다.");
         }
     }
 
-    private void checkSize(List<LottoNumber> numbers) {
+    private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != LOTTO_COUNT) {
             throw new RuntimeException("로또는 6개의 숫자로 이루어져야 합니다.");
         }
     }
 
-    public boolean contains(LottoNumber bonus) {
-        return numbers.contains(bonus);
+    public boolean contains(LottoNumber num) {
+        return numbers.contains(num);
+    }
+
+    public List<LottoNumber> diff(Lotto lotto) {
+        return lotto.numbers.stream()
+                .filter(n -> !this.numbers.contains(n))
+                .collect(Collectors.toList());
     }
 
     @Override

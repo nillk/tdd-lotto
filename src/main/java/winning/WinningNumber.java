@@ -1,7 +1,10 @@
+package winning;
+
 import lotto.Lotto;
 import lotto.LottoNumber;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class WinningNumber {
 
@@ -36,7 +39,10 @@ public class WinningNumber {
         }
     }
 
-    public boolean check(Lotto lotto) {
-        return this.winningLotto.equals(lotto);
+    public WinningRank check(Lotto lotto) {
+        List<LottoNumber> diffResult = this.winningLotto.diff(lotto);
+        boolean hasBonusNumber = diffResult.contains(bonus);
+
+        return WinningRank.of(diffResult.size(), hasBonusNumber);
     }
 }

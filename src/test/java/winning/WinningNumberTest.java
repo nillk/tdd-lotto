@@ -1,3 +1,5 @@
+package winning;
+
 import lotto.Lotto;
 import org.junit.Test;
 
@@ -9,7 +11,7 @@ public class WinningNumberTest {
     public void 당첨_번호를_입력할_수_있다() {
         WinningNumber winningNumber = new WinningNumber("1,2,3,4,5,6", "7");
 
-        assertThat(winningNumber.check(new Lotto(1, 2, 3, 4, 5, 6))).isTrue();
+        assertThat(winningNumber.check(new Lotto(1, 2, 3, 4, 5, 6))).isEqualTo(WinningRank.FIRST);
     }
 
     @Test
@@ -61,5 +63,41 @@ public class WinningNumberTest {
     public void 보너스_번호가_당첨번호에_있는_숫자면_에러_발생() {
         assertThatThrownBy(() -> new WinningNumber("1,2,3,4,5,6", "6"))
                 .hasMessage("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
+
+    @Test
+    public void 모든_번호가_동일하면_1등이다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 3, 4, 5, 6)))
+                .isEqualTo(WinningRank.FIRST);
+    }
+
+    @Test
+    public void 번호가_5개_일치하고_보너스_번호가_일치하면_2등이다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 3, 4, 5, 7)))
+                .isEqualTo(WinningRank.SECOND);
+    }
+
+    @Test
+    public void 번호가_5개_일치하고_보너스_번호가_일치하지_않으면_3등이다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 3, 4, 5, 8)))
+                .isEqualTo(WinningRank.THIRD);
+    }
+
+    @Test
+    public void 번호가_4개_일치하면_4등이다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 3, 4, 8, 9)))
+                .isEqualTo(WinningRank.FOURTH);
+    }
+
+    @Test
+    public void 번호가_3개_일치하면_5등이다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 3, 8, 9, 10)))
+                .isEqualTo(WinningRank.FIFTH);
+    }
+
+    @Test
+    public void 번호가_3개_이하로_일치하면_당첨되지_않는다() {
+        assertThat(new WinningNumber("1,2,3,4,5,6", "7").check(new Lotto(1, 2, 8, 9, 10, 11)))
+                .isEqualTo(WinningRank.NONE);
     }
 }

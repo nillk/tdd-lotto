@@ -1,4 +1,6 @@
 
+import winning.WinningNumber;
+
 import java.util.Scanner;
 
 public class LottoGame {
