@@ -18,6 +18,9 @@ public class LottoGame {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
         String winningNumber = scan.next();
 
-        lottoMachine.setWinningNumber(winningNumber);
+        System.out.println("보너스 볼을 입력해 주세요.");
+        String bonusNumber = scan.next();
+
+        WinningNumber lastWeekWinningNumber = new WinningNumber(winningNumber, bonusNumber);
     }
 }
