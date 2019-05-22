@@ -20,4 +20,11 @@ public class WinningStatisticsTest {
                 "5개 일치, 보너스 볼 일치(30000000원) - 0개\n" +
                 "6개 일치 (2000000000원) - 1개");
     }
+
+    @Test
+    public void 로또_당첨금_수익률을_확인할_수_있다() {
+        WinningStatistics statistics = new WinningStatistics(Arrays.asList(WinningRank.FIFTH));
+
+        assertThat(statistics.earningRate(8000)).isEqualTo(0.625);
+    }
 }

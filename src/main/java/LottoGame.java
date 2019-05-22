@@ -29,5 +29,6 @@ public class LottoGame {
         WinningStatistics winningStatistics = lottoMachine.check(lastWeekWinningNumber);
 
         System.out.println(winningStatistics);
+        System.out.println("총 수익률은 " + winningStatistics.earningRate(price) + "입니다.");
     }
 }

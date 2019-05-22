@@ -21,6 +21,10 @@ public enum WinningRank {
         this.prizeMoney = prizeMoney;
     }
 
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
     public static WinningRank of(int diffSize, boolean hasBonusNumber) {
         if (diffSize == 0) {
             return FIRST;

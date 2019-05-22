@@ -12,6 +12,14 @@ public class WinningStatistics {
         this.resultMap = winningRanks.stream().collect(Collectors.toMap(k -> k, v -> 1, Integer::sum));
     }
 
+    public double earningRate(int price) {
+        double totalPrize = resultMap.entrySet().stream()
+                .mapToDouble(e -> e.getKey().getPrizeMoney() * e.getValue())
+                .sum();
+
+        return totalPrize / price;
+    }
+
     private String makeRankString(WinningRank rank) {
         return rank + " - " + resultMap.getOrDefault(rank, 0) + "개";
     }
