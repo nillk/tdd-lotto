@@ -1,16 +1,16 @@
 package winning;
 
 public enum WinningRank {
-    FIRST(6, 2000000000),
-    SECOND(5, 30000000) {
+    FIRST(6, 2_000_000_000),
+    SECOND(5, 30_000_000) {
         @Override
         public String toString() {
             return this.criteria + "개 일치, 보너스 볼 일치(" + this.prizeMoney + "원)";
         }
     },
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000),
+    THIRD(5, 1_500_000),
+    FOURTH(4, 50_000),
+    FIFTH(3, 5_000),
     NONE(2, 0);
 
     int criteria;

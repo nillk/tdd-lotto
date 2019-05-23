@@ -4,7 +4,7 @@ import winning.WinningStatistics;
 
 public class LottoMachine {
 
-    private static final int PRICE_BASE = 1000;
+    private static final int PRICE_BASE = 1_000;
 
     private LottoList lottoList;
 
